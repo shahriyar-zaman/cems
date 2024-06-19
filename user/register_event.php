@@ -7,6 +7,8 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
+$message = '';
+
 if (isset($_GET['id'])) {
     $event_id = $_GET['id'];
     $user_id = $_SESSION['id'];
@@ -18,12 +20,12 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($result_check) == 0) {
         $sql = "INSERT INTO registrations (EventID, UserID, RegistrationDate) VALUES ($event_id, $user_id, NOW())";
         if (mysqli_query($link, $sql)) {
-            echo "You have successfully registered for the event.";
+            $message = "You have successfully registered for the event.";
         } else {
-            echo "ERROR: Could not execute $sql. " . mysqli_error($link);
+            $message = "ERROR: Could not execute $sql. " . mysqli_error($link);
         }
     } else {
-        echo "You are already registered for this event.";
+        $message = "You are already registered for this event.";
     }
 } else {
     header("location: view_events.php");
@@ -32,5 +34,10 @@ if (isset($_GET['id'])) {
 ?>
 
 <?php include('../includes/header.php'); ?>
-<p><a href="view_events.php">Back to Events</a></p>
+
+<div class="message-container">
+    <p><?php echo $message; ?></p>
+    <a href="view_events.php" class="btn">Back to Events</a>
+</div>
+
 <?php include('../includes/footer.php'); ?>

@@ -263,3 +263,50 @@ tr:hover {
 .actions a:hover {
     background-color: #ddd;
 }
+
+/* New Styles for Events */
+.events-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.event-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.event-card h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.event-card p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.event-card .btn {
+    align-self: stretch;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.event-card .btn:hover {
+    background-color: #555;
+}
