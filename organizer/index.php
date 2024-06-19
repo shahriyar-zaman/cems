@@ -21,21 +21,9 @@ $result = mysqli_query($link, $sql);
 <ul>
     <li><a href="create_event.php">Create Event</a></li>
     <li><a href="manage_events.php">Manage My Events</a></li>
+    <li><a href="view_event_feedback.php">View Feedback</a></li>
 </ul>
 
-<h2>Event Feedback</h2>
-<?php if (mysqli_num_rows($result) > 0): ?>
-    <div class="feedback-container">
-        <?php while ($row = mysqli_fetch_array($result)): ?>
-            <div class="feedback-card">
-                <h3><?php echo $row['Title']; ?></h3>
-                <p><strong>Rating:</strong> <?php echo $row['Rating']; ?></p>
-                <p><?php echo $row['FeedbackText']; ?></p>
-                <p><strong>Submitted on:</strong> <?php echo $row['SubmissionDate']; ?></p>
-            </div>
-        <?php endwhile; ?>
-    </div>
-<?php else: ?>
-    <p>No feedback found for your events.</p>
-<?php endif; ?>
+
+
 <?php include('../includes/footer.php'); ?>

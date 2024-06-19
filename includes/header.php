@@ -12,11 +12,20 @@
         <h1>Campus Event Management System</h1>
         <nav>
             <ul>
-                <li><a href="/cems/public/index.php">Home</a></li>
-                <?php if(isset($_SESSION['id'])): ?>
+                <?php if(isset($_SESSION['id']) && $_SESSION['role'] == 2): ?>
+                    <li><a href="/cems/organizer/index.php">Dashboard</a></li>
+                    <li><a href="/cems/public/logout.php">Logout</a></li>    
+
+                <?php elseif(isset($_SESSION['id']) && $_SESSION['role'] == 1): ?>
+                    <li><a href="/cems/admin/index.php">Dashboard</a></li>
+                    <li><a href="/cems/public/logout.php">Logout</a></li>
+
+                <?php elseif(isset($_SESSION['id']) && $_SESSION['role'] == 3): ?>
                     <li><a href="/cems/user/index.php">Dashboard</a></li>
                     <li><a href="/cems/public/logout.php">Logout</a></li>
+
                 <?php else: ?>
+                    <li><a href="/cems/public/index.php">Home</a></li>
                     <li><a href="/cems/public/login.php">Login</a></li>
                     <li><a href="/cems/public/register.php">Register</a></li>
                 <?php endif; ?>

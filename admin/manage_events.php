@@ -18,7 +18,11 @@ $result = mysqli_query($link, $sql);
 
 <?php include('../includes/header.php'); ?>
 <h2>Manage Events</h2>
+
+<!--
 <a href="create_event.php">Create Event</a>
+-->
+
 <table>
     <tr>
         <th>Title</th>
