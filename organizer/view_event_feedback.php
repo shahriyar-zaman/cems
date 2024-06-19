@@ -1,12 +1,11 @@
 <?php
+require_once '../includes/db.php';
 session_start();
 
 if (!isset($_SESSION['id']) || $_SESSION['role'] != 2) {
     header("location: ../public/login.php");
     exit;
 }
-
-require_once '../includes/db.php';
 
 $organizer_id = $_SESSION['id'];
 
@@ -17,12 +16,6 @@ $result = mysqli_query($link, $sql);
 ?>
 
 <?php include('../includes/header.php'); ?>
-<h2>Organizer Dashboard</h2>
-<ul>
-    <li><a href="create_event.php">Create Event</a></li>
-    <li><a href="manage_events.php">Manage My Events</a></li>
-</ul>
-
 <h2>Event Feedback</h2>
 <?php if (mysqli_num_rows($result) > 0): ?>
     <div class="feedback-container">

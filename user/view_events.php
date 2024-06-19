@@ -26,7 +26,8 @@ $result = mysqli_query($link, $sql);
             <div class="event-card">
                 <h3><?php echo $row['Title']; ?></h3>
                 <p><?php echo $row['Description']; ?></p>
-                <p><strong>Date:</strong> <?php echo $row['Date']; ?> <strong>Time:</strong> <?php echo $row['Time']; ?></p>
+                <p><strong>Date:</strong> <?php echo $row['Date']; ?></p>
+                <p><strong>Time:</strong> <?php echo $row['Time']; ?></p>
                 <p><strong>Location:</strong> <?php echo $row['Location']; ?></p>
                 <p><strong>Category:</strong> <?php echo $row['CategoryName']; ?></p>
                 <p><strong>Organizer:</strong> <?php echo $row['OrganizerName']; ?></p>
