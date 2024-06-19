@@ -24,26 +24,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 header("location: ../user/index.php");
             }
         } else {
-            $error = "Invalid password.";
+            echo "Invalid password.";
         }
     } else {
-        $error = "No account found with that email.";
+        echo "No account found with that email.";
     }
 }
 ?>
 
 <?php include('../includes/header.php'); ?>
-<main class="form-container">
+<div class="form-container">
     <h2>Login</h2>
-    <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
     <form action="login.php" method="post">
         <label>Email:</label>
         <input type="email" name="email" required>
-        
         <label>Password:</label>
         <input type="password" name="password" required>
-        
         <input type="submit" value="Login">
     </form>
-</main>
+</div>
 <?php include('../includes/footer.php'); ?>
