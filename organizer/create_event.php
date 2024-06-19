@@ -2,7 +2,7 @@
 require_once '../includes/db.php';
 session_start();
 
-if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'organizer') {
+if (!isset($_SESSION['id']) || $_SESSION['role'] != 2) {
     header("location: ../public/login.php");
     exit;
 }
