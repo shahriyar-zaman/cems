@@ -1,0 +1,224 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #444;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+.hero {
+    background-color: #333;
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: auto;
+}
+
+.events, .featured-events, .testimonials, .contact {
+    margin-top: 20px;
+}
+
+.events h2, .featured-events h2, .testimonials h2, .contact h2 {
+    text-align: center;
+    color: #333;
+}
+
+.events ul {
+    list-style: none;
+    padding: 0;
+}
+
+.events ul li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.events ul li h3 {
+    margin: 0 0 10px;
+}
+
+.events ul li p {
+    margin: 5px 0;
+}
+
+.events ul li a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #333;
+    text-decoration: none;
+    background-color: #f4f4f4;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.events ul li a:hover {
+    background-color: #ddd;
+}
+
+.slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+}
+
+.slide {
+    min-width: 200px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+.slide h3 {
+    padding: 10px;
+    text-align: center;
+}
+
+.testimonials {
+    padding: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.testimonials blockquote {
+    margin: 0;
+    padding: 10px;
+    border-left: 5px solid #ccc;
+    background-color: #fff;
+    font-style: italic;
+}
+
+.contact {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="date"],
+.form-container input[type="time"],
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container input[type="submit"] {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.success {
+    color: green;
+    text-align: center;
+    margin-bottom: 10px;
+}
