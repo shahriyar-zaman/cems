@@ -284,7 +284,7 @@ include('../includes/header.php');
     <section class="hero my-5">
         <div class="hero-image">
             <h2>Organize, manage, and track all campus events seamlessly.</h2>
-            <!-- <p>Organize, manage, and track all campus events seamlessly.</p> -->
+            <!-- <p>Organize, manage, and track all campus events seamlessly.</p>g -->
         </div>
     </section>
     <nav class="my-3">
@@ -352,8 +352,11 @@ include('../includes/header.php');
         </blockquote>
     </section> -->
     <section class="contact mt-5">
-        <h2>Contact Us</h2>
-        <p>Have questions? Reach out to us at <a href="mailto:info@campuseventsystem.com">info@campuseventsystem.com</a>.</p>
+        <h2>CONTACT US</h2>
+        <p>Reach out to us at <br>
+        <a href="mailto:shahriyar.ridoy@northsouth.edu">shahriyar.ridoy@northsouth.edu</a><br>
+        <a href="mailto:koushik.tonmoy@northsouth.edu">koushik.tonmoy@northsouth.edu</a>
+        </p>
     </section>
 </main>
 <?php include('../includes/footer.php'); ?>
