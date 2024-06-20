@@ -34,6 +34,9 @@
                         <li><a href="/cems/public/register.php">Register</a></li>
                     <?php endif; ?>
                 </ul>
+                <?php if(isset($_SESSION['name'])): ?>
+                    <p><?php echo htmlspecialchars($_SESSION['name']); ?></p>
+                <?php endif; ?>
             </nav>
         </div>
     </header>

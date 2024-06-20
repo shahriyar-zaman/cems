@@ -12,21 +12,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(mysqli_num_rows($result) == 1){
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
         if(password_verify($password, $row['Password'])){
+            
+            // Set session variables
             $_SESSION['id'] = $row['UserID'];
             $_SESSION['role'] = $row['RoleID'];
-            $_SESSION['name'] = $row['Name'];
-            
+            $_SESSION['name'] = $row['Name']; // Assuming the column name is 'Name'
+
+            // Redirect based on role
             if ($row['RoleID'] == '1') {
                 header("location: ../admin/index.php");
-            } elseif ($row['RoleID'] == '2') {
+            }
+            elseif ($row['RoleID'] == '2') {
                 header("location: ../organizer/index.php");
-            } else {
+            } 
+            else {
                 header("location: ../user/index.php");
             }
-        } else {
+        } 
+        else {
             echo "Invalid password.";
         }
-    } else {
+    } 
+    else {
         echo "No account found with that email.";
     }
 }
