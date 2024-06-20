@@ -32,6 +32,7 @@
                         <li><a href="/cems/public/index.php">Home</a></li>
                         <li><a href="/cems/public/login.php">Login</a></li>
                         <li><a href="/cems/public/register.php">Register</a></li>
+                        <li><a href="/cems/public/events.php">Events</a></li>
                     <?php endif; ?>
                 </ul>
                 <?php if(isset($_SESSION['name'])): ?>
