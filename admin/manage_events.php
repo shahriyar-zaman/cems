@@ -17,11 +17,7 @@ $result = mysqli_query($link, $sql);
 ?>
 
 <?php include('../includes/header.php'); ?>
-<h2>Manage Events</h2>
-
-<!--
-<a href="create_event.php">Create Event</a>
--->
+<h2>Manage My Events</h2>
 
 <table>
     <tr>
@@ -30,7 +26,6 @@ $result = mysqli_query($link, $sql);
         <th>Time</th>
         <th>Location</th>
         <th>Category</th>
-        <th>Organizer</th>
         <th>Department</th>
         <th>Actions</th>
     </tr>
@@ -41,7 +36,6 @@ $result = mysqli_query($link, $sql);
             <td><?php echo $row['Time']; ?></td>
             <td><?php echo $row['Location']; ?></td>
             <td><?php echo $row['CategoryName']; ?></td>
-            <td><?php echo $row['OrganizerName']; ?></td>
             <td><?php echo $row['DepartmentName']; ?></td>
             <td>
                 <a href="edit_event.php?id=<?php echo $row['EventID']; ?>">Edit</a>

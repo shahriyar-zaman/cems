@@ -1,3 +1,40 @@
+Here is the updated `header.php` and `styles.css` to match the layout you requested:
+
+### Updated `header.php`
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Event Management System</title>
+    <link rel="stylesheet" href="/cems/css/styles.css">
+    <script src="/cems/js/scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/cems/images/insure-logo.png" alt="iNSUre Logo" class="logo">
+            <div class="logo-text">
+                <h1>iNSUre</h1>
+                <p>A Campus Event Management System</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/cems/public/index.php">Home</a></li>
+                <li><a href="/cems/public/login.php">Login</a></li>
+                <li><a href="/cems/public/register.php">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+```
+
+### Updated `styles.css`
+
+```css
 * {
     box-sizing: border-box;
 }
@@ -14,10 +51,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
     color: #333;
 }
 
@@ -26,23 +59,41 @@ header {
     color: white;
     padding: 1em 0;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header h1 {
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-text h1 {
     margin: 0;
     font-size: 1.5em;
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 0.9em;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    text-align: center; /* Centered the navigation buttons */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin: 0;
 }
 
 nav ul li a {
@@ -63,8 +114,8 @@ nav ul li a:hover {
     position: relative;
     height: 300px;
     overflow: hidden;
-    background: url('../images/event1.jpg') no-repeat center center; /* Adjusted background image to fit completely */
-    background-size: cover; /* Ensured the image covers the entire section */
+    background: url('../images/event1.jpg') no-repeat center center;
+    background-size: cover;
     color: white;
     text-align: center;
     padding: 50px 20px;
@@ -80,11 +131,6 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-/* Additional Styling to ensure uniformity */
-.hero-image img {
-    width: 100%; /* Ensures the image width is 100% */
-    height: auto; /* Maintains the aspect ratio */
 }
 
 .hero h2 {
@@ -116,12 +162,12 @@ footer {
     margin-top: auto;
 }
 
-.events, .featured-events, .testimonials, .contact {
+.events, .past-events, .testimonials, .contact {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.events h2, .featured-events h2, .testimonials h2, .contact h2 {
+.events h2, .past-events h2, .testimonials h2, .contact h2 {
     text-align: center;
     color: #333;
     font-size: 2em;
@@ -129,12 +175,12 @@ footer {
     padding-bottom: 10px;
 }
 
-.events ul, .event-list {
+.events ul, .past-events ul {
     list-style: none;
     padding: 0;
 }
 
-.events ul li, .event-item {
+.events ul li, .past-events ul li {
     background: #fff;
     margin: 10px 0;
     padding: 10px;
@@ -143,15 +189,15 @@ footer {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.events ul li h3, .event-item h3 {
+.events ul li h3, .past-events ul li h3 {
     margin: 0 0 10px;
 }
 
-.events ul li p, .event-item p {
+.events ul li p, .past-events ul li p {
     margin: 5px 0;
 }
 
-.events ul li a, .btn-register {
+.events ul li a, .past-events ul li a {
     display: inline-block;
     margin-right: 10px;
     color: #333;
@@ -162,7 +208,7 @@ footer {
     transition: background-color 0.3s;
 }
 
-.events ul li a:hover, .btn-register:hover {
+.events ul li a:hover, .past-events ul li a:hover {
     background-color: #ddd;
 }
 
@@ -341,7 +387,9 @@ tr:hover {
     border-radius: 5px;
     padding: 20px;
     width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow
+
+: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -416,4 +464,191 @@ tr:hover {
 
 .btn-dashboard:hover {
     background-color: #555;
+}
+/* General styles */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo-text h1 {
+    margin: 0;
+    font-size: 1.5em;
+    line-height: 1.2;
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.2;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #444;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+/* General styles */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo-text h1 {
+    margin: 0;
+    font-size: 1.5em;
+    line-height: 1.2;
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.2;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #444;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+/* Main and other styles */
+main {
+    flex: 1;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: auto;
 }

@@ -2,8 +2,12 @@
 require_once '../includes/db.php';
 
 // Fetch upcoming events
-$sql = "SELECT * FROM events ORDER BY Date ASC LIMIT 5";
-$result = mysqli_query($link, $sql);
+$sql_upcoming = "SELECT * FROM events WHERE Date >= CURDATE() ORDER BY Date ASC LIMIT 5";
+$result_upcoming = mysqli_query($link, $sql_upcoming);
+
+// Fetch past events
+$sql_past = "SELECT * FROM events WHERE Date < CURDATE() ORDER BY Date DESC LIMIT 5";
+$result_past = mysqli_query($link, $sql_past);
 
 include('../includes/header.php');
 ?>
@@ -18,9 +22,9 @@ include('../includes/header.php');
     </section>
     <section class="events">
         <h2>Upcoming Events</h2>
-        <?php if(mysqli_num_rows($result) > 0): ?>
+        <?php if(mysqli_num_rows($result_upcoming) > 0): ?>
             <ul class="event-list"><!-- Changed: Added class event-list -->
-                <?php while($row = mysqli_fetch_array($result)): ?>
+                <?php while($row = mysqli_fetch_array($result_upcoming)): ?>
                     <li class="event-item"><!-- Changed: Added class event-item -->
                         <h3><?php echo $row['Title']; ?></h3>
                         <p><?php echo $row['Description']; ?></p>
@@ -34,22 +38,22 @@ include('../includes/header.php');
             <p>No upcoming events.</p>
         <?php endif; ?>
     </section>
-    <section class="featured-events">
-        <h2>Featured Events</h2>
-        <div class="slider"><!-- Changed: Added class slider -->
-            <div class="slide"><!-- Changed: Added class slide -->
-                <img src="../images/event1.jpg" alt="Event 1">
-                <h3>Annual Tech Symposium</h3>
-            </div>
-            <div class="slide"><!-- Changed: Added class slide -->
-                <img src="../images/event2.jpg" alt="Event 2">
-                <h3>Science Fair 2024</h3>
-            </div>
-            <div class="slide"><!-- Changed: Added class slide -->
-                <img src="../images/event3.jpg" alt="Event 3">
-                <h3>Cultural Fest</h3>
-            </div>
-        </div>
+    <section class="past-events">
+        <h2>Past Events</h2>
+        <?php if(mysqli_num_rows($result_past) > 0): ?>
+            <ul class="event-list"><!-- Changed: Added class event-list -->
+                <?php while($row = mysqli_fetch_array($result_past)): ?>
+                    <li class="event-item"><!-- Changed: Added class event-item -->
+                        <h3><?php echo $row['Title']; ?></h3>
+                        <p><?php echo $row['Description']; ?></p>
+                        <p><strong>Date:</strong> <?php echo $row['Date']; ?> <strong>Time:</strong> <?php echo $row['Time']; ?></p>
+                        <p><strong>Location:</strong> <?php echo $row['Location']; ?></p>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        <?php else: ?>
+            <p>No past events.</p>
+        <?php endif; ?>
     </section>
     <section class="testimonials">
         <h2>What Our Users Say</h2>
