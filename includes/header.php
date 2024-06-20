@@ -27,13 +27,14 @@
                         <li><a href="/cems/public/logout.php">Logout</a></li>
                     <?php elseif(isset($_SESSION['id']) && $_SESSION['role'] == 3): ?>
                         <li><a href="/cems/public/index.php">Home</a></li>
+                        <li><a href="/cems/public/events.php">Events</a></li>
                         <li><a href="/cems/user/index.php">Dashboard</a></li>
                         <li><a href="/cems/public/logout.php">Logout</a></li>
                     <?php else: ?>
                         <li><a href="/cems/public/index.php">Home</a></li>
+                        <li><a href="/cems/public/events.php">Events</a></li>
                         <li><a href="/cems/public/login.php">Login</a></li>
                         <li><a href="/cems/public/register.php">Register</a></li>
-                        <li><a href="/cems/public/events.php">Events</a></li>
                     <?php endif; ?>
                 </ul>
                 <?php if(isset($_SESSION['name'])): ?>
