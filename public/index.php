@@ -283,8 +283,8 @@ include('../includes/header.php');
 <main class="container">
     <section class="hero my-5">
         <div class="hero-image">
-            <h2>Welcome to Our Campus Event Management System</h2>
-            <p>Organize, manage, and track all campus events seamlessly.</p>
+            <h2>Organize, manage, and track all campus events seamlessly.</h2>
+            <!-- <p>Organize, manage, and track all campus events seamlessly.</p> -->
         </div>
     </section>
     <nav class="my-3">
