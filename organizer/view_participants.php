@@ -1,5 +1,4 @@
 <?php
-require_once '../includes/db.php';
 session_start();
 
 if (!isset($_SESSION['id']) || $_SESSION['role'] != 2) {
@@ -7,13 +6,21 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] != 2) {
     exit;
 }
 
-// Fetch events organized by the logged-in organizer
-$organizer_id = $_SESSION['id'];
-$sql_events = "SELECT EventID, Title FROM Events WHERE OrganizerID = $organizer_id";
-$result_events = mysqli_query($link, $sql_events);
+require_once '../includes/db.php';
 
-if (!$result_events) {
-    die("SQL Error: " . mysqli_error($link));
+$organizer_id = $_SESSION['id'];
+
+$sql = "SELECT Users.Name AS ParticipantName, Users.Email, Events.Title AS EventTitle 
+        FROM Registrations 
+        JOIN Users ON Registrations.UserID = Users.UserID 
+        JOIN Events ON Registrations.EventID = Events.EventID 
+        WHERE Events.OrganizerID = $organizer_id 
+        ORDER BY Events.EventID";
+$result = mysqli_query($link, $sql);
+
+$participants = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $participants[$row['EventTitle']][] = $row;
 }
 
 include('../includes/header.php');
@@ -26,84 +33,59 @@ include('../includes/header.php');
     <title>View Participants</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .event-container {
-            margin-top: 20px;
-            padding: 20px;
+        .card {
+            margin-bottom: 20px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .event-header {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            text-align: center;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        .table {
+            margin-bottom: 0;
         }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
+        .participant-count {
+            font-size: 0.9em;
+            color: #888;
         }
     </style>
 </head>
 <body>
-    <main class="container">
-        <h2>View Participants</h2>
-        <?php while ($event = mysqli_fetch_array($result_events)): ?>
-            <div class="event-container">
-                <div class="event-header">
-                    <?php echo $event['Title']; ?>
-                    <?php
-                    // Fetch participants for this event
-                    $event_id = $event['EventID'];
-                    $sql_participants = "SELECT Users.Name as ParticipantName, Users.Email 
-                                         FROM Registrations 
-                                         JOIN Users ON Registrations.UserID = Users.UserID 
-                                         WHERE Registrations.EventID = $event_id";
-                    $result_participants = mysqli_query($link, $sql_participants);
-                    if (!$result_participants) {
-                        die("SQL Error: " . mysqli_error($link));
-                    }
-                    $num_participants = mysqli_num_rows($result_participants);
-                    echo " ({$num_participants} participants)";
-                    ?>
-                </div>
-                <?php if ($num_participants > 0): ?>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Participant Name</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while ($participant = mysqli_fetch_array($result_participants)): ?>
-                                <tr>
-                                    <td><?php echo $participant['ParticipantName']; ?></td>
-                                    <td><?php echo $participant['Email']; ?></td>
-                                </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
-                <?php else: ?>
-                    <p>No participants registered for this event.</p>
-                <?php endif; ?>
+<main class="container mt-5">
+    <h2 class="text-center mb-4">View Participants</h2>
+    <?php foreach ($participants as $eventTitle => $participantList): ?>
+        <div class="card">
+            <div class="card-header">
+                <?php echo $eventTitle; ?> <span class="participant-count">(<?php echo count($participantList); ?> participants)</span>
             </div>
-        <?php endwhile; ?>
-    </main>
-
-    <?php include('../includes/footer.php'); ?>
+            <div class="card-body p-0">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Participant Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($participantList as $participant): ?>
+                            <tr>
+                                <td><?php echo $participant['ParticipantName']; ?></td>
+                                <td><?php echo $participant['Email']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php include('../includes/footer.php'); ?>

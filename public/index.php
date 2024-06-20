@@ -3,11 +3,11 @@ require_once '../includes/db.php';
 session_start();
 
 // Fetch upcoming events
-$sql_upcoming = "SELECT * FROM events WHERE Date >= CURDATE() ORDER BY Date ASC LIMIT 5";
+$sql_upcoming = "SELECT * FROM events WHERE Date >= CURDATE() ORDER BY Date ASC LIMIT 6";
 $result_upcoming = mysqli_query($link, $sql_upcoming);
 
 // Fetch past events
-$sql_past = "SELECT * FROM events WHERE (Date < CURDATE() OR (Date = CURDATE() AND Time < CURTIME())) ORDER BY Date DESC LIMIT 5";
+$sql_past = "SELECT * FROM events WHERE (Date < CURDATE() OR (Date = CURDATE() AND Time < CURTIME())) ORDER BY Date DESC LIMIT 6";
 $result_past = mysqli_query($link, $sql_past);
 
 include('../includes/header.php');
@@ -207,6 +207,7 @@ include('../includes/header.php');
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 400px; /* Fixed height for all event boxes */
         }
 
         .event-item h3 {
@@ -215,6 +216,7 @@ include('../includes/header.php');
 
         .event-item p {
             margin: 10px 0;
+            flex-grow: 1; /* Make the description take up remaining space */
         }
 
         .event-item .btn-register {
@@ -225,6 +227,7 @@ include('../includes/header.php');
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            align-self: flex-end; /* Align the button to the bottom */
         }
 
         .event-item .btn-register:hover {
@@ -339,7 +342,7 @@ include('../includes/header.php');
             </div>
         </div>
     </div>
-    <section class="testimonials mt-5">
+    <!-- <section class="testimonials mt-5">
         <h2>What Our Users Say</h2>
         <blockquote>
             <p>"This platform has made organizing events so much easier. Highly recommend!" - Jane Doe</p>
@@ -347,7 +350,7 @@ include('../includes/header.php');
         <blockquote>
             <p>"A must-have tool for any campus event. Great features and easy to use." - John Smith</p>
         </blockquote>
-    </section>
+    </section> -->
     <section class="contact mt-5">
         <h2>Contact Us</h2>
         <p>Have questions? Reach out to us at <a href="mailto:info@campuseventsystem.com">info@campuseventsystem.com</a>.</p>
