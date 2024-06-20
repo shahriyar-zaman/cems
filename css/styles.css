@@ -36,9 +36,7 @@ header h1 {
 nav ul {
     list-style: none;
     padding: 0;
-    text-align: center;
-    margin: 0;
-    display: flex;
+    text-align: center; /* Centered the navigation buttons */
 }
 
 nav ul li {
@@ -62,13 +60,14 @@ nav ul li a:hover {
 }
 
 .hero {
-    background-color: #333;
-    color: white;
-    padding: 50px 20px;
-    text-align: center;
     position: relative;
     height: 300px;
     overflow: hidden;
+    background: url('../images/event1.jpg') no-repeat center center; /* Adjusted background image to fit completely */
+    background-size: cover; /* Ensured the image covers the entire section */
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
 }
 
 .hero-image {
@@ -81,6 +80,11 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+/* Additional Styling to ensure uniformity */
+.hero-image img {
+    width: 100%; /* Ensures the image width is 100% */
+    height: auto; /* Maintains the aspect ratio */
 }
 
 .hero h2 {
