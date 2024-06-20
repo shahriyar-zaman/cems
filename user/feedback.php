@@ -21,11 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$sql_events = "SELECT * FROM events";
+// Fetch events that the user has registered for and that have expired based on time and date
+$sql_events = "SELECT events.EventID, events.Title FROM events
+               JOIN registrations ON events.EventID = registrations.EventID
+               WHERE registrations.UserID = {$_SESSION['id']} 
+               AND (events.Date < CURDATE() OR (events.Date = CURDATE() AND events.Time < CURTIME()))";
 $result_events = mysqli_query($link, $sql_events);
+
+include('../includes/header.php');
 ?>
 
-<?php include('../includes/header.php'); ?>
 <div class="form-container">
     <h2>Submit Feedback</h2>
     <?php if (isset($message)): ?>
@@ -51,4 +56,5 @@ $result_events = mysqli_query($link, $sql_events);
         <input type="submit" value="Submit Feedback">
     </form>
 </div>
+
 <?php include('../includes/footer.php'); ?>

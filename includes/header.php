@@ -35,7 +35,7 @@
                     <?php endif; ?>
                 </ul>
                 <?php if(isset($_SESSION['name'])): ?>
-                    <p><?php echo htmlspecialchars($_SESSION['name']); ?></p>
+                    <p class="user-name"><?php echo htmlspecialchars($_SESSION['name']); ?></p>
                 <?php endif; ?>
             </nav>
         </div>

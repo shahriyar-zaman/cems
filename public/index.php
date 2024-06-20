@@ -6,7 +6,7 @@ $sql_upcoming = "SELECT * FROM events WHERE Date >= CURDATE() ORDER BY Date ASC 
 $result_upcoming = mysqli_query($link, $sql_upcoming);
 
 // Fetch past events
-$sql_past = "SELECT * FROM events WHERE Date < CURDATE() ORDER BY Date DESC LIMIT 5";
+$sql_past = "SELECT * FROM events WHERE (Date < CURDATE() OR (Date = CURDATE() AND Time < CURTIME())) ORDER BY Date DESC LIMIT 5";
 $result_past = mysqli_query($link, $sql_past);
 
 include('../includes/header.php');
