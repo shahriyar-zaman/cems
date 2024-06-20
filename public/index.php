@@ -1,5 +1,6 @@
 <?php
 require_once '../includes/db.php';
+session_start();
 
 // Fetch upcoming events
 $sql_upcoming = "SELECT * FROM events WHERE Date >= CURDATE() ORDER BY Date ASC LIMIT 5";

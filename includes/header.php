@@ -26,6 +26,7 @@
                         <li><a href="/cems/admin/index.php">Dashboard</a></li>
                         <li><a href="/cems/public/logout.php">Logout</a></li>
                     <?php elseif(isset($_SESSION['id']) && $_SESSION['role'] == 3): ?>
+                        <li><a href="/cems/public/index.php">Home</a></li>
                         <li><a href="/cems/user/index.php">Dashboard</a></li>
                         <li><a href="/cems/public/logout.php">Logout</a></li>
                     <?php else: ?>
