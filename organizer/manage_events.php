@@ -9,10 +9,11 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] != 2) {
 
 // Fetch events organized by the logged-in organizer
 $organizer_id = $_SESSION['id'];
-$sql = "SELECT events.*, eventcategories.CategoryName, departments.DepartmentName FROM events 
-        JOIN eventcategories ON events.CategoryID = eventcategories.CategoryID 
-        JOIN departments ON events.DepartmentID = departments.DepartmentID
-        WHERE events.OrganizerID = $organizer_id";
+$sql = "SELECT Events.*, EventCategories.CategoryName, Departments.DepartmentName 
+        FROM Events 
+        JOIN EventCategories ON Events.CategoryID = EventCategories.CategoryID 
+        JOIN Departments ON Events.DepartmentID = Departments.DepartmentID
+        WHERE Events.OrganizerID = $organizer_id";
 $result = mysqli_query($link, $sql);
 
 include('../includes/header.php');

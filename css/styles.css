@@ -105,7 +105,8 @@ nav ul li a:hover {
     background-size: cover;
     color: white;
     text-align: center;
-    padding: 50px 20px;
+    padding: 0;
+    width: 100%;
 }
 
 .hero-image {
