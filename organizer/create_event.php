@@ -1,5 +1,9 @@
 <?php
 require_once '../includes/db.php';
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
 session_start();
 
 // Redirect to login page if user is not logged in or not an organizer
@@ -22,8 +26,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO events (Title, Description, Date, Time, Location, CategoryID, OrganizerID, DepartmentID, RecurrencePattern) 
             VALUES ('$title', '$description', '$date', '$time', '$location', '$category_id', '$organizer_id', '$department_id', '$recurrence_pattern')";
-    
+
     if (mysqli_query($link, $sql)) {
+        // Fetch all users to send the email notification
+        $sql_users = "SELECT Email FROM users WHERE RoleID IN (1, 3)"; // Assuming roles 1 and 3 are for students and faculty
+        $result_users = mysqli_query($link, $sql_users);
+
+        if ($result_users) {
+            $emails = [];
+            while ($row_users = mysqli_fetch_array($result_users)) {
+                $emails[] = $row_users['Email'];
+            }
+
+            // Send email to all users
+            $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+            try {
+                //Server settings
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;
+                $mail->Username = 'shahriyar.ridoy01@gmail.com'; // SMTP username
+                $mail->Password = 'kxsmiirqouybqezk'; // SMTP password
+                $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587; // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom('shahriyar.ridoy01@gmail.com', 'Event Management System');
+                foreach ($emails as $email) {
+                    $mail->addAddress($email);
+                }
+
+                //Content
+                $mail->isHTML(true);
+                $mail->Subject = 'New Event Created: ' . $title;
+                $mail->Body    = "<p>A new event has been created.</p>
+                                  <p><strong>Title:</strong> $title</p>
+                                  <p><strong>Description:</strong> $description</p>
+                                  <p><strong>Date:</strong> $date</p>
+                                  <p><strong>Time:</strong> $time</p>
+                                  <p><strong>Location:</strong> $location</p>";
+
+                if ($mail->send()) {
+                    echo 'Emails have been sent successfully';
+                } else {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        } else {
+            echo "ERROR: Could not execute $sql_users. " . mysqli_error($link);
+        }
+
         header("location: manage_events.php");
     } else {
         echo "ERROR: Could not execute $sql. " . mysqli_error($link);
@@ -33,9 +88,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Fetch categories and departments for the dropdowns
 $sql_categories = "SELECT * FROM eventcategories";
 $result_categories = mysqli_query($link, $sql_categories);
+if (!$result_categories) {
+    die('Error fetching categories: ' . mysqli_error($link));
+}
 
 $sql_departments = "SELECT * FROM departments";
 $result_departments = mysqli_query($link, $sql_departments);
+if (!$result_departments) {
+    die('Error fetching departments: ' . mysqli_error($link));
+}
 
 include('../includes/header.php');
 ?>
