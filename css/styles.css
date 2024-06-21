@@ -206,10 +206,6 @@ footer {
     gap: 10px;
     overflow: auto;
 }
-a {
-    color: white;
-    text-decoration: none;
-}
 
 .slide {
     min-width: 200px;

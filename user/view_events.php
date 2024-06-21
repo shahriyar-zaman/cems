@@ -8,11 +8,13 @@ if (!isset($_SESSION['id'])) {
 
 require_once '../includes/db.php';
 
-// Fetch all events
+// Fetch all upcoming events
+$current_date = date('Y-m-d');
 $sql = "SELECT events.*, eventcategories.CategoryName, users.Name as OrganizerName, departments.DepartmentName FROM events 
         JOIN eventcategories ON events.CategoryID = eventcategories.CategoryID 
         JOIN users ON events.OrganizerID = users.UserID 
         JOIN departments ON events.DepartmentID = departments.DepartmentID
+        WHERE events.Date >= '$current_date'
         ORDER BY events.Date ASC";
 $result = mysqli_query($link, $sql);
 
@@ -37,6 +39,6 @@ $result = mysqli_query($link, $sql);
         <?php endwhile; ?>
     </div>
 <?php else: ?>
-    <p>No events found.</p>
+    <p>No upcoming events found.</p>
 <?php endif; ?>
 <?php include('../includes/footer.php'); ?>
