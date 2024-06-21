@@ -96,4 +96,8 @@ while ($row = mysqli_fetch_assoc($result_departments)) {
     .event-item p {
         margin: 5px 0;
     }
+    a {
+        color: white;
+        text-decoration: none;
+    }
 </style>

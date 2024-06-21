@@ -63,3 +63,10 @@ include('../includes/header.php');
 </div>
 
 <?php include('../includes/footer.php'); ?>
+
+<style>
+    a {
+        color: white;
+        text-decoration: none;
+    }
+</style>
